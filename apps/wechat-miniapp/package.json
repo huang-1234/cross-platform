@@ -12,7 +12,6 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@cross-platform/core-utils": "*"
   },
   "devDependencies": {
     "@types/node": "22.13.10",

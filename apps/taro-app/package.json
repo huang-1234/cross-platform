@@ -18,7 +18,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.22.15",
-    "@cross-platform/core-utils": "*",
     "@tarojs/components": "3.6.15",
     "@tarojs/helper": "3.6.15",
     "@tarojs/plugin-framework-react": "3.6.15",

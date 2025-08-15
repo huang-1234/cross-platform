@@ -14,9 +14,6 @@
     "package": "electron-builder"
   },
   "dependencies": {
-    "@cross-platform/core-utils": "*",
-    "@cross-platform/api-mock": "*",
-    "@cross-platform/design-system": "*",
     "electron-store": "^8.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
