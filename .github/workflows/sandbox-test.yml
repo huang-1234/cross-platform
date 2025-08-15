@@ -1,0 +1,40 @@
+name: 平台沙箱测试
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  sandbox-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [electron, flutter, react-native]
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v3
+
+      - name: 设置Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: 安装依赖
+        run: npm ci
+
+      - name: 启动模拟API服务
+        run: |
+          cd packages/api-mock
+          npm run start &
+          sleep 5
+
+      - name: 运行平台测试
+        run: |
+          cd apps/${{ matrix.platform }}-app
+          npm run test:sandbox
+        env:
+          API_MOCK_URL: http://localhost:3000

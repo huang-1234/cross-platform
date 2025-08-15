@@ -1,0 +1,14 @@
+{
+  "app": {
+    "bundleName": "com.crossplatform.harmony",
+    "vendor": "cross-platform",
+    "versionCode": 1000000,
+    "versionName": "1.0.0",
+    "icon": "$media:app_icon",
+    "label": "$string:app_name",
+    "minAPIVersion": 9,
+    "targetAPIVersion": 9,
+    "apiReleaseType": "Release",
+    "debug": false
+  }
+}

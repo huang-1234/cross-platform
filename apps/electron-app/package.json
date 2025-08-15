@@ -1,0 +1,53 @@
+{
+  "name": "@cross-platform/electron-app",
+  "version": "1.0.0",
+  "description": "Electron桌面应用",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "concurrently \"webpack --mode development --watch\" \"electron .\"",
+    "start": "electron .",
+    "test": "jest",
+    "test:sandbox": "jest sandbox",
+    "lint": "eslint src --ext .ts,.tsx",
+    "clean": "rimraf dist",
+    "package": "electron-builder"
+  },
+  "dependencies": {
+    "@cross-platform/core-utils": "*",
+    "@cross-platform/api-mock": "*",
+    "@cross-platform/design-system": "*",
+    "electron-store": "^8.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.13.10",
+    "ts-node": "10.9.2",
+    "typescript": "5.8.3",
+    "vite": "6.0.0",
+    "vitest": "2.1.5",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "concurrently": "^8.2.1",
+    "css-loader": "^6.8.1",
+    "electron": "^26.1.0",
+    "electron-builder": "^24.6.3",
+    "html-webpack-plugin": "^5.5.3",
+    "style-loader": "^3.3.3",
+    "ts-loader": "^9.4.4",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "build": {
+    "appId": "com.cross-platform.electron-app",
+    "productName": "Cross Platform Electron",
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "release"
+    }
+  }
+}

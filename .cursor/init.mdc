@@ -1,0 +1,263 @@
+---
+alwaysApply: false
+---
+
+以下是为实现多框架应用开发学习项目设计的完整技术文档，采用**Monorepo架构 + TurboRepo构建系统**，支持Electron、Android、iOS、React Native、微信小程序、Taro、Flutter、鸿蒙ArkTS的协同开发与API学习。
+
+---
+
+### **📂 一、仓库结构设计（Monorepo模式）**
+```bash
+root/
+├── apps/                          # 各平台应用代码
+│   ├── electron-app/              # Electron应用
+│   ├── android-app/               # 原生Android (Kotlin)
+│   ├── ios-app/                   # 原生iOS (Swift)
+│   ├── react-native-app/          # React Native跨端
+│   ├── wechat-miniapp/            # 微信小程序
+│   ├── taro-app/                  # Taro（编译为H5/小程序/RN）
+│   ├── flutter-app/               # Flutter应用
+│   └── harmony-arkts-app/         # 鸿蒙ArkTS应用
+├── packages/                      # 共享代码库
+│   ├── core-utils/                # 通用工具函数
+│   ├── api-mock/                  # 模拟API服务（JSON-Server）
+│   └── design-system/             # 跨平台UI组件库（React/Vue/ArkTS兼容）
+├── .github/workflows/             # CI/CD流水线
+├── turbo.json                     # TurboRepo构建配置
+├── global-config/                 # 全局环境配置
+│   ├── env-vars.env               # 环境变量（API端点/密钥）
+│   └── metro-config.js             # React Native多入口配置
+└── scripts/                       # 自动化脚本
+    ├── sync-mock-api.sh           # 同步模拟API数据
+    └── deploy-wechat.sh           # 小程序自动上传
+```
+
+---
+
+### **⚙️ 二、环境配置与工具链**
+#### **1. 基础依赖**
+```bash
+# 根目录安装
+npm install turbo -g
+npm install -g @tarojs/cli flutter sdkman
+```
+
+#### **2. 平台特定环境**
+| **平台**         | **核心依赖**                              | **配置文件**                     |
+|------------------|------------------------------------------|--------------------------------|
+| Android          | JDK17, Android SDK 34                    | `android-app/build.gradle`     |
+| iOS              | Xcode 15+, CocoaPods                     | `ios-app/Podfile`              |
+| 微信小程序       | 微信开发者工具                           | `wechat-miniapp/project.config.json` |
+| 鸿蒙ArkTS        | DevEco Studio 4.0+, ArkTS SDK            | `harmony-arkts-app/entry/src/main/ets` |
+| Flutter          | Flutter 3.19+, Dart 3.3                  | `flutter-app/pubspec.yaml`     |
+
+#### **3. TurboRepo构建配置 (`turbo.json`)**
+```json
+{
+  "pipeline": {
+    "build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "ios-build": {
+      "dependsOn": ["build"],
+      "outputs": [],
+      "env": ["APPLE_DEVELOPER_TEAM_ID"]
+    }
+  }
+}
+```
+
+---
+
+### **🔄 三、核心工作流设计**
+#### **1. 跨平台API学习系统**
+- **统一接口层**：在 `packages/api-mock` 定义RESTful接口规范
+  ```typescript
+  // 示例：用户登录接口
+  POST /api/login
+  { platform: 'react-native', params: { username, password } }
+  ```
+- **平台适配器**：各应用实现相同接口的差异化调用
+  ```js
+  // react-native-app/src/adapters/login.js
+  import { NativeModules } from 'react-native';
+  export const login = (params) => NativeModules.AuthModule.login(params);
+  ```
+
+#### **2. 开发命令集成**
+```bash
+# 同时启动Electron和React Native
+turbo dev --filter=electron-app --filter=react-native-app
+
+# 单独构建鸿蒙ArkTS
+cd apps/harmony-arkts-app && npm run build:harmony
+```
+
+#### **3. 自动化测试沙箱**
+```yaml
+# .github/workflows/sandbox-test.yml
+- name: Run Platform Tests
+  matrix:
+    platform: [electron, flutter, react-native]
+  run: |
+    cd apps/${{ matrix.platform }}-app
+    npm run test:sandbox  # 执行平台专属测试脚本
+  env:
+    API_MOCK_URL: http://localhost:3000
+```
+
+---
+
+### **📚 四、跨平台API学习实践**
+#### **1. API对比表（示例）**
+| **功能**         | **React Native**           | **Flutter**               | **鸿蒙ArkTS**         |
+|------------------|----------------------------|---------------------------|-----------------------|
+| 网络请求         | `fetch` + `Axios`          | `http` package            | `@ohos.net.http`     |
+| 本地存储         | `AsyncStorage`             | `shared_preferences`      | `@ohos.data.preferences` |
+| 相机调用         | `react-native-camera`      | `camera` plugin           | `@ohos.multimedia.camera` |
+
+#### **2. 学习沙箱机制**
+- **独立沙箱目录**：每个应用的 `sandbox/` 目录存放API实验代码
+  ```bash
+  flutter-app/sandbox/
+  ├── camera_experiment.dart   # 相机API测试
+  └── http_benchmark.dart     # 网络性能对比
+  ```
+- **动态加载**：通过环境变量控制沙箱入口
+  ```dart
+  // Flutter应用入口
+  void main() {
+    if (const String.fromEnvironment('SANDBOX_MODE') == 'camera') {
+      runApp(CameraExperiment());
+    } else {
+      runApp(MainApp());
+    }
+  }
+  ```
+
+---
+
+### **🔧 五、构建与测试策略**
+#### **1. 多平台构建命令**
+```bash
+# Taro多端编译
+taro build --type weapp, h5, rn
+
+# Flutter多架构打包
+flutter build apk --target-platform android-arm64
+flutter build ios --release
+```
+
+#### **2. 性能监控方案**
+```yaml
+# GitHub Actions性能采集
+- name: Benchmark Electron
+  run: |
+    cd apps/electron-app
+    npm run perf:record  # 使用Electron内置performance API
+    cat perf.log >> $GITHUB_STEP_SUMMARY
+```
+
+#### **3. 冲突解决机制**
+当多平台代码冲突时：
+1. 使用 `git checkout --ours` 保留当前分支修改
+2. 运行 **统一格式化工具**：
+   ```bash
+   # 根目录统一格式化
+   npm run format  # 调用Prettier + ESLint
+   ```
+
+---
+
+### **🌐 六、多平台同步策略**
+#### **1. 自动同步到Gitee（国内加速）**
+```yaml
+# .github/workflows/sync-gitee.yml
+- name: Mirror to Gitee
+  uses: wearerequired/git-mirror@master
+  env:
+    SSH_PRIVATE_KEY: ${{ secrets.GITEE_SSH_KEY }}
+  with:
+    source-repo: "git@github.com:user/repo.git"
+    destination-repo: "git@gitee.com:user/repo.git"
+```
+
+#### **2. 鸿蒙ArkTS特殊处理**
+```bash
+# 鸿蒙模块独立提交（避免大文件冲突）
+git subtree split -P apps/harmony-arkts-app -b harmony
+git push https://gitee.com/harmony-repo harmony:main
+```
+
+---
+
+### **🚀 七、扩展与最佳实践**
+1. **动态代码加载**
+   使用 `import()` 按需加载平台特定模块：
+   ```javascript
+   // 在React Native中动态加载鸿蒙适配器
+   const loadHarmonyAdapter = async () => {
+     if (Platform.OS === 'harmony') {
+       return import('@shared/harmony-adapter');
+     }
+   };
+   ```
+
+2. **统一日志系统**
+   ```typescript
+   // packages/core-utils/logger.ts
+   export const log = (platform: string, message: string) => {
+     if (process.env.NODE_ENV === 'development') {
+       console.log(`[${platform}] ${message}`);
+     } else {
+       // 生产环境上报至Sentry
+       Sentry.captureMessage(message, { tags: { platform } });
+     }
+   };
+   ```
+
+3. **多设备调试**
+   配置 `.vscode/launch.json` 支持多设备联调：
+   ```json
+   {
+     "configurations": [
+       {
+         "name": "Debug Android",
+         "request": "launch",
+         "type": "reactnativedirect",
+         "platform": "android"
+       },
+       {
+         "name": "Debug HarmonyOS",
+         "request": "attach",
+         "type": "arkts",
+         "device": "Harmony_Device"
+       }
+     ]
+   }
+   ```
+
+---
+
+### **🔍 完整示例与问题排查**
+- **示例仓库**：https://github.com/your-repo/multi-platform-learn
+- **常见问题**：
+  - **Q**: 鸿蒙ArkTS构建失败
+    **A**: 检查DevEco SDK路径，设置环境变量：
+    ```bash
+    export HARMONY_SDK=/opt/harmony-sdk
+    ```
+  - **Q**: Taro编译RN时样式丢失
+    **A**: 在 `taro-app/config/index.js` 中启用 `postcss` 插件：
+    ```js
+    postcss: {
+      autoprefixer: { enable: true }
+    }
+    ```
+
+此方案通过 **Monorepo + TurboRepo** 实现多框架高效协同，结合**沙箱实验机制**和**统一API层**，可系统性对比跨平台技术差异。GitLink同步服务保障了国内开发体验，矩阵式CI/CD确保全平台构建一致性。

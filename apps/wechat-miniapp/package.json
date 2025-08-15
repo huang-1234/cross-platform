@@ -1,0 +1,26 @@
+{
+  "name": "@cross-platform/wechat-miniapp",
+  "version": "1.0.0",
+  "description": "微信小程序",
+  "scripts": {
+    "build": "miniprogram-ci compile --pp ./dist",
+    "dev": "miniprogram-ci compile --pp ./dist --watch",
+    "upload": "miniprogram-ci upload",
+    "test": "jest",
+    "test:sandbox": "jest sandbox",
+    "lint": "eslint src --ext .ts,.js",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@cross-platform/core-utils": "*"
+  },
+  "devDependencies": {
+    "@types/node": "22.13.10",
+    "ts-node": "10.9.2",
+    "typescript": "5.8.3",
+    "vitest": "2.1.5",
+    "eslint": "^8.48.0",
+    "miniprogram-ci": "^1.9.8",
+    "rimraf": "5.0.1"
+  }
+}

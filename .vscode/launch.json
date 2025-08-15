@@ -1,0 +1,44 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Electron",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/apps/electron-app",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+      "windows": {
+        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
+      },
+      "args": ["."],
+      "outputCapture": "std",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Debug React Native Android",
+      "request": "launch",
+      "type": "reactnativedirect",
+      "cwd": "${workspaceFolder}/apps/react-native-app",
+      "platform": "android"
+    },
+    {
+      "name": "Debug React Native iOS",
+      "request": "launch",
+      "type": "reactnativedirect",
+      "cwd": "${workspaceFolder}/apps/react-native-app",
+      "platform": "ios"
+    },
+    {
+      "name": "Debug Flutter",
+      "type": "dart",
+      "request": "launch",
+      "program": "${workspaceFolder}/apps/flutter-app/lib/main.dart"
+    },
+    {
+      "name": "Debug HarmonyOS",
+      "request": "attach",
+      "type": "arkts",
+      "device": "Harmony_Device"
+    }
+  ]
+}

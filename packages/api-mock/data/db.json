@@ -1,0 +1,84 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "test_user",
+      "email": "test@example.com",
+      "name": "测试用户"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "产品A",
+      "price": 99.99,
+      "description": "这是产品A的描述",
+      "image": "https://via.placeholder.com/150"
+    },
+    {
+      "id": 2,
+      "name": "产品B",
+      "price": 199.99,
+      "description": "这是产品B的描述",
+      "image": "https://via.placeholder.com/150"
+    },
+    {
+      "id": 3,
+      "name": "产品C",
+      "price": 299.99,
+      "description": "这是产品C的描述",
+      "image": "https://via.placeholder.com/150"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "userId": 1,
+      "products": [
+        {
+          "productId": 1,
+          "quantity": 2
+        },
+        {
+          "productId": 2,
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 399.97,
+      "status": "completed",
+      "createdAt": "2023-08-01T10:00:00Z"
+    }
+  ],
+  "platform_features": {
+    "electron": [
+      "本地文件访问",
+      "系统托盘",
+      "原生菜单",
+      "自动更新"
+    ],
+    "react-native": [
+      "热重载",
+      "原生组件",
+      "手势系统",
+      "动画API"
+    ],
+    "flutter": [
+      "热重载",
+      "自绘UI",
+      "Dart语言",
+      "丰富的组件库"
+    ],
+    "harmony-arkts": [
+      "声明式UI",
+      "ArkTS语言",
+      "状态管理",
+      "分布式能力"
+    ],
+    "wechat-miniapp": [
+      "小程序API",
+      "微信生态",
+      "云开发",
+      "分包加载"
+    ]
+  }
+}
