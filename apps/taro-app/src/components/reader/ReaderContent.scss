@@ -1,0 +1,67 @@
+.readerContent {
+  position: relative;
+  height: 100vh;
+  background-color: var(--reader-bg-color);
+}
+
+.scrollView {
+  height: 100%;
+}
+
+.chapterTitle {
+  padding: 20px 0;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.chapterContent {
+  padding: 0 var(--reader-padding);
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--reader-text-color);
+
+  p {
+    margin-bottom: 1em;
+  }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 16px;
+  color: #999;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 16px;
+  color: #ff4d4f;
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 16px;
+  color: #999;
+}
+
+/* 高亮样式 */
+:global {
+  .highlight {
+    position: relative;
+    cursor: pointer;
+    border-radius: 2px;
+
+    &:active {
+      background-color: var(--highlight-active-color) !important;
+    }
+  }
+}

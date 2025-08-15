@@ -1,0 +1,35 @@
+/* 全局样式 */
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f8f8f8;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+view, text, navigator, button, input, image {
+  box-sizing: border-box;
+}
+
+/* 阅读器样式变量 */
+:root {
+  --reader-bg-color: #f8f8f8;
+  --reader-text-color: #333;
+  --reader-font-size: 16px;
+  --reader-line-height: 1.8;
+  --reader-padding: 32px;
+  --highlight-color: #ffeb3b;
+  --highlight-active-color: #ffc107;
+  --comment-bg-color: #f1f1f1;
+  --comment-text-color: #666;
+  --bottom-bar-height: 100px;
+  --primary-color: #1890ff;
+}
+
+/* 适配底部安全区域 */
+.page-with-tabbar {
+  padding-bottom: var(--bottom-bar-height);
+  min-height: 100vh;
+}

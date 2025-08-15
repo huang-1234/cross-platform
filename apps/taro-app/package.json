@@ -11,8 +11,8 @@
     "dev:h5": "npm run build:h5 -- --watch",
     "dev:rn": "npm run build:rn -- --watch",
     "dev": "npm run dev:weapp",
-    "test": "jest",
-    "test:sandbox": "jest sandbox",
+    "test": "vitest",
+    "test:sandbox": "vitest run",
     "lint": "eslint src --ext .ts,.tsx",
     "clean": "rimraf dist"
   },
@@ -33,7 +33,10 @@
     "@tarojs/shared": "3.6.15",
     "@tarojs/taro": "3.6.15",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "taro-ui": "^3.3.0",
+    "uuid": "^9.0.0",
+    "zustand": "^4.4.0"
   },
   "devDependencies": {
     "@babel/core": "7.22.15",
@@ -41,16 +44,17 @@
     "@tarojs/cli": "3.6.15",
     "@tarojs/webpack5-runner": "3.6.15",
     "@types/node": "22.13.10",
-    "ts-node": "10.9.2",
-    "typescript": "5.8.3",
-    "vite": "6.0.0",
-    "vitest": "2.1.5",
     "@types/react": "^18.2.21",
+    "@types/uuid": "^9.0.2",
     "@types/webpack-env": "1.18.1",
     "babel-preset-taro": "3.6.15",
     "eslint-config-taro": "3.6.15",
     "react-refresh": "0.14.0",
     "rimraf": "5.0.1",
+    "ts-node": "10.9.2",
+    "typescript": "5.8.3",
+    "vite": "6.0.0",
+    "vitest": "2.1.5",
     "webpack": "5.88.2"
   }
 }

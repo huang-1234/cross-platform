@@ -1,0 +1,102 @@
+.indexPage {
+  min-height: 100vh;
+  background-color: #f8f8f8;
+}
+
+.header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.content {
+  height: calc(100vh - 64px);
+  padding-bottom: var(--bottom-bar-height);
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.sectionHeader {
+  padding: 0 20px;
+  margin-bottom: 12px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.bookList {
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bookCard {
+  display: flex;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.bookCover {
+  width: 100px;
+  height: 140px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bookInfo {
+  flex: 1;
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bookTitle {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.bookAuthor {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.addButton {
+  margin-top: auto;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 8px 0;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.categoryList {
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.categoryItem {
+  background-color: #fff;
+  padding: 12px 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  font-size: 14px;
+}

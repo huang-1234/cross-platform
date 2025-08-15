@@ -1,0 +1,87 @@
+.bookshelfPage {
+  padding: 20px;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  padding-bottom: calc(var(--bottom-bar-height) + 20px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.bookList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bookItem {
+  display: flex;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.bookCover {
+  width: 120px;
+  height: 160px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bookInfo {
+  flex: 1;
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bookTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.bookAuthor {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.progressBar {
+  height: 4px;
+  background-color: #e0e0e0;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: auto;
+}
+
+.progressInner {
+  height: 100%;
+  background-color: var(--primary-color);
+}
+
+.loading, .error, .empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+  color: #999;
+  text-align: center;
+}
+
+.retry {
+  color: var(--primary-color);
+  margin-top: 8px;
+}

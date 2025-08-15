@@ -1,0 +1,10 @@
+// 获取书架上的书籍
+export const FETCH_BOOKS_REQUEST = 'FETCH_BOOKS_REQUEST'
+export const FETCH_BOOKS_SUCCESS = 'FETCH_BOOKS_SUCCESS'
+export const FETCH_BOOKS_FAILURE = 'FETCH_BOOKS_FAILURE'
+
+// 添加书籍到书架
+export const ADD_BOOK_TO_SHELF = 'ADD_BOOK_TO_SHELF'
+
+// 从书架移除书籍
+export const REMOVE_BOOK_FROM_SHELF = 'REMOVE_BOOK_FROM_SHELF'
