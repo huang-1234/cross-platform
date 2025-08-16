@@ -4,7 +4,7 @@ import Taro from '@tarojs/taro'
 import BottomTabBar from '../../components/common/BottomTabBar'
 import './index.scss'
 
-const MinePage: React.FC = () => {
+function MinePage() {
   // 用户信息（实际应用中应该从服务器获取或本地存储）
   const user = {
     avatar: 'https://joeschmoe.io/api/v1/random',
@@ -76,4 +76,4 @@ const MinePage: React.FC = () => {
   )
 }
 
-export default MinePage
+export default React.memo(MinePage)

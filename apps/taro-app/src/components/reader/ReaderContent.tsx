@@ -11,7 +11,7 @@ interface ReaderContentProps {
   chapterId?: string
 }
 
-const ReaderContent: React.FC<ReaderContentProps> = ({ bookId, chapterId }) => {
+function ReaderContent({ bookId, chapterId }: ReaderContentProps) {
   const contentRef = useRef<HTMLDivElement>(null)
   const [showHighlightMenu, setShowHighlightMenu] = useState(false)
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 })
@@ -161,4 +161,4 @@ const ReaderContent: React.FC<ReaderContentProps> = ({ bookId, chapterId }) => {
   )
 }
 
-export default ReaderContent
+export default React.memo(ReaderContent)

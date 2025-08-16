@@ -6,7 +6,7 @@ import { mockBooks } from '../../services/api'
 import BottomTabBar from '../../components/common/BottomTabBar'
 import './index.scss'
 
-const IndexPage: React.FC = () => {
+function IndexPage() {
   const [recommendBooks, setRecommendBooks] = useState<Book[]>([])
   const { addBookToShelf } = useBookshelfStore()
 
@@ -92,4 +92,4 @@ const IndexPage: React.FC = () => {
   )
 }
 
-export default IndexPage
+export default React.memo(IndexPage)

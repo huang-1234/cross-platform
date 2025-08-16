@@ -9,7 +9,10 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: [],
+  plugins: [
+    '@tarojs/plugin-sass', // 使用 Sass
+    // '@tarojs/plugin-stylus', // 使用 Stylus
+  ],
   defineConstants: {
   },
   copy: {
@@ -50,6 +53,13 @@ const config = {
   h5: {
     publicPath: '/',
     staticDirectory: 'static',
+    module: {
+      postcss: {
+        autoprefixer: {
+          enable: true,
+        },
+      },
+    },
     postcss: {
       autoprefixer: {
         enable: true,

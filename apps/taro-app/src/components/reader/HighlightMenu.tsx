@@ -8,11 +8,11 @@ interface HighlightMenuProps {
   onClose: () => void
 }
 
-const HighlightMenu: React.FC<HighlightMenuProps> = ({
+function HighlightMenu({
   position,
   onHighlight,
   onClose
-}) => {
+}: HighlightMenuProps) {
   // 高亮颜色选项
   const colors = [
     { value: '#ffeb3b', label: '黄色' },
@@ -59,4 +59,4 @@ const HighlightMenu: React.FC<HighlightMenuProps> = ({
   )
 }
 
-export default HighlightMenu
+export default React.memo(HighlightMenu)

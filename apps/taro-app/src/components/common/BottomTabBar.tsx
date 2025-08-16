@@ -16,7 +16,7 @@ interface BottomTabBarProps {
   current: string
 }
 
-const BottomTabBar: React.FC<BottomTabBarProps> = ({ current }) => {
+function BottomTabBar({ current }: BottomTabBarProps) {
   // 定义底部标签页
   const tabs: TabItem[] = [
     {
@@ -66,4 +66,4 @@ const BottomTabBar: React.FC<BottomTabBarProps> = ({ current }) => {
   )
 }
 
-export default BottomTabBar
+export default React.memo(BottomTabBar)

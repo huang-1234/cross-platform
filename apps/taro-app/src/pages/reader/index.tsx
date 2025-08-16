@@ -7,7 +7,7 @@ import CommentPanel from '../../components/reader/CommentPanel'
 import ReaderBottomMenu from '../../components/reader/ReaderBottomMenu'
 import './index.scss'
 
-const ReaderPage: React.FC = () => {
+function ReaderPage() {
   const router = useRouter()
   const { bookId, chapterId } = router.params
   const [activeHighlightId, setActiveHighlightId] = useState<string | null>(null)
@@ -127,4 +127,4 @@ const ReaderPage: React.FC = () => {
   )
 }
 
-export default ReaderPage
+export default React.memo(ReaderPage)

@@ -9,7 +9,7 @@ interface CommentPanelProps {
   onClose: () => void
 }
 
-const CommentPanel: React.FC<CommentPanelProps> = ({ highlightId, onClose }) => {
+function CommentPanel({ highlightId, onClose }: CommentPanelProps) {
   const [commentText, setCommentText] = useState('')
 
   const {
@@ -121,4 +121,4 @@ const CommentPanel: React.FC<CommentPanelProps> = ({ highlightId, onClose }) => 
   )
 }
 
-export default CommentPanel
+export default React.memo(CommentPanel)

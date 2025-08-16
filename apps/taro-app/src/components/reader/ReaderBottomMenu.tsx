@@ -10,12 +10,12 @@ interface ReaderBottomMenuProps {
   onShowChapters: () => void
 }
 
-const ReaderBottomMenu: React.FC<ReaderBottomMenuProps> = ({
+function ReaderBottomMenu({
   onFontSizeChange,
   onThemeChange,
   onBackToBookshelf,
   onShowChapters
-}) => {
+}: ReaderBottomMenuProps) {
   return (
     <View className='readerBottomMenu'>
       <View className='menuItem' onClick={onBackToBookshelf}>
@@ -46,4 +46,4 @@ const ReaderBottomMenu: React.FC<ReaderBottomMenuProps> = ({
   )
 }
 
-export default ReaderBottomMenu
+export default React.memo(ReaderBottomMenu)

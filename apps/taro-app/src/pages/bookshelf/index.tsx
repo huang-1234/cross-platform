@@ -5,7 +5,7 @@ import { useBookshelfStore } from '../../store/bookshelfStore'
 import BottomTabBar from '../../components/common/BottomTabBar'
 import './index.scss'
 
-const BookshelfPage: React.FC = () => {
+const BookshelfPage = () => {
   const { books, loading, error, fetchBooks } = useBookshelfStore()
 
   // 获取书架上的书籍
@@ -14,14 +14,14 @@ const BookshelfPage: React.FC = () => {
   }, [fetchBooks])
 
   // 打开阅读器
-  const handleOpenBook = (bookId: string) => {
+  function handleOpenBook(bookId: string) {
     Taro.navigateTo({
       url: `/pages/reader/index?bookId=${bookId}`
     })
   }
 
   // 渲染书籍项
-  const renderBookItem = (book) => {
+  function renderBookItem(book) {
     return (
       <View
         key={book.id}
@@ -73,4 +73,4 @@ const BookshelfPage: React.FC = () => {
   )
 }
 
-export default BookshelfPage
+export default React.memo(BookshelfPage)
