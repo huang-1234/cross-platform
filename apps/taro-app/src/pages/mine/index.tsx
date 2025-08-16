@@ -4,9 +4,22 @@ import Taro from '@tarojs/taro'
 import BottomTabBar from '../../components/common/BottomTabBar'
 import './index.scss'
 
+interface UserInfo {
+  avatar: string
+  nickname: string
+  readingDays: number
+  booksCount: number
+}
+
+interface Feature {
+  id: string
+  title: string
+  icon: string
+}
+
 function MinePage() {
   // 用户信息（实际应用中应该从服务器获取或本地存储）
-  const user = {
+  const user: UserInfo = {
     avatar: 'https://joeschmoe.io/api/v1/random',
     nickname: '读书爱好者',
     readingDays: 30,
@@ -14,7 +27,7 @@ function MinePage() {
   }
 
   // 功能列表
-  const features = [
+  const features: Feature[] = [
     { id: 'notes', title: '我的笔记', icon: '📝' },
     { id: 'highlights', title: '我的划线', icon: '🖌️' },
     { id: 'favorites', title: '我的收藏', icon: '⭐' },

@@ -11,9 +11,9 @@ function ReaderPage() {
   const router = useRouter()
   const { bookId, chapterId } = router.params
   const [activeHighlightId, setActiveHighlightId] = useState<string | null>(null)
-  const [showMenu, setShowMenu] = useState(false)
-  const [fontSize, setFontSize] = useState(16) // 默认字体大小
-  const [isDarkTheme, setIsDarkTheme] = useState(false)
+  const [showMenu, setShowMenu] = useState<boolean>(false)
+  const [fontSize, setFontSize] = useState<number>(16) // 默认字体大小
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false)
 
   const { highlights } = useReaderStore()
 
@@ -28,11 +28,11 @@ function ReaderPage() {
 
   // 监听高亮点击事件
   useEffect(() => {
-    const handleHighlightClick = (e) => {
-      const target = e.target
+    const handleHighlightClick = (e: Event) => {
+      const target = e.target as HTMLElement
       if (target.className.includes('highlight')) {
         const highlightId = target.dataset.id
-        setActiveHighlightId(highlightId)
+        setActiveHighlightId(highlightId || null)
       }
     }
 
@@ -106,7 +106,7 @@ function ReaderPage() {
 
   return (
     <View className='readerPage'>
-      <ReaderContent bookId={bookId!} chapterId={chapterId!} />
+      <ReaderContent bookId={bookId as string} chapterId={chapterId as string} />
 
       {activeHighlightId && (
         <CommentPanel

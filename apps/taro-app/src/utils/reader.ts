@@ -1,10 +1,16 @@
 import { v4 as uuidv4 } from 'uuid'
-import { Highlight, Comment } from '../store/reducers/reader'
+import { Highlight, Comment } from '../store/readerStore'
 
 /**
  * 创建高亮对象
  */
-export function createHighlight(bookId: string, chapterId: string, text: string, startOffset: number, endOffset: number): Highlight {
+export function createHighlight(
+  bookId: string,
+  chapterId: string,
+  text: string,
+  startOffset: number,
+  endOffset: number
+): Highlight {
   return {
     id: uuidv4(),
     bookId,
@@ -29,10 +35,17 @@ export function createComment(highlightId: string, content: string): Comment {
   }
 }
 
+interface SelectionInfo {
+  text: string;
+  startOffset: number;
+  endOffset: number;
+  element: HTMLElement;
+}
+
 /**
  * 获取选中的文本信息
  */
-export function getSelectionInfo() {
+export function getSelectionInfo(): SelectionInfo | null {
   const selection = window.getSelection()
   if (!selection || selection.rangeCount === 0) return null
 
@@ -43,7 +56,7 @@ export function getSelectionInfo() {
 
   // 获取起始和结束位置
   const preCaretRange = range.cloneRange()
-  const element = range.startContainer.parentElement
+  const element = range.startContainer.parentElement as HTMLElement
 
   preCaretRange.selectNodeContents(element)
   preCaretRange.setEnd(range.startContainer, range.startOffset)
@@ -87,7 +100,11 @@ export function applyHighlights(content: string, highlights: Highlight[]): strin
 /**
  * 计算阅读进度
  */
-export function calculateReadingProgress(scrollTop: number, contentHeight: number, viewportHeight: number): number {
+export function calculateReadingProgress(
+  scrollTop: number,
+  contentHeight: number,
+  viewportHeight: number
+): number {
   if (contentHeight <= viewportHeight) return 1
 
   const progress = scrollTop / (contentHeight - viewportHeight)

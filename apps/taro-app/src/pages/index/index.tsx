@@ -24,7 +24,7 @@ function IndexPage() {
   }
 
   // 添加到书架
-  const handleAddToShelf = (book: Book, e: any) => {
+  const handleAddToShelf = (book: Book, e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation()
     addBookToShelf(book)
     Taro.showToast({

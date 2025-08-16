@@ -38,9 +38,9 @@ interface ReaderState {
 
   // 操作方法
   fetchBookContent: (bookId: string) => Promise<void>
-  addHighlight: (highlight: Omit<Highlight, 'id' | 'createdAt'>) => void
+  addHighlight: (highlight: Omit<Highlight, 'id' | 'createdAt'>) => Highlight
   removeHighlight: (highlightId: string) => void
-  addComment: (comment: Omit<Comment, 'id' | 'createdAt'>) => void
+  addComment: (comment: Omit<Comment, 'id' | 'createdAt'>) => Comment
   removeComment: (commentId: string) => void
   updateReadingProgress: (progress: number, chapterId?: string) => void
 }

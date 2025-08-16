@@ -10,7 +10,7 @@ interface CommentPanelProps {
 }
 
 function CommentPanel({ highlightId, onClose }: CommentPanelProps) {
-  const [commentText, setCommentText] = useState('')
+  const [commentText, setCommentText] = useState<string>('')
 
   const {
     highlights,

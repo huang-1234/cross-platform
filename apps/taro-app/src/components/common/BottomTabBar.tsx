@@ -2,7 +2,24 @@ import React from 'react'
 import { View, Text, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import './BottomTabBar.scss'
-import '~taro-ui/dist/style/components/icon.scss'
+
+import record from '../../assets/icons/record.svg'
+
+
+// 书架
+// import bookshelf from '../../assets/icons/bookshelf.svg'
+const bookshelfIcon = record
+const bookshelfActiveIcon = record;
+
+// 发现
+// import discover from '../../assets/icons/discover.svg'
+const discoverIcon = record
+const discoverActiveIcon = record;
+
+// 我的
+// import mine from '../../assets/icons/mine.svg'
+const mineIcon = record
+const mineActiveIcon = record;
 
 interface TabItem {
   key: string
@@ -22,22 +39,22 @@ function BottomTabBar({ current }: BottomTabBarProps) {
     {
       key: 'bookshelf',
       title: '书架',
-      icon: '../../assets/icons/record-0.svg', // 需要替换为实际图标路径
-      activeIcon: '../../assets/icons/record.svg',
+      icon: bookshelfIcon, // 需要替换为实际图标路径
+      activeIcon: bookshelfActiveIcon,
       path: '/pages/bookshelf/index'
     },
     {
       key: 'discover',
       title: '发现',
-      icon: '../../assets/icons/record-0.svg', // 需要替换为实际图标路径
-      activeIcon: '../../assets/icons/record.svg',
+      icon: discoverIcon, // 需要替换为实际图标路径
+      activeIcon: discoverActiveIcon,
       path: '/pages/index/index'
     },
     {
       key: 'mine',
       title: '我的',
-      icon: '../../assets/icons/record-0.svg', // 需要替换为实际图标路径
-      activeIcon: '../../assets/icons/record.svg',
+      icon: mineIcon, // 需要替换为实际图标路径
+      activeIcon: mineActiveIcon,
       path: '/pages/mine/index'
     }
   ]

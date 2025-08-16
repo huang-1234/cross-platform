@@ -38,9 +38,15 @@ export const useBookshelfStore = create<BookshelfState>((set, get) => ({
   },
 
   addBookToShelf: (book: Book) => {
-    set(state => ({
-      books: [...state.books, book]
-    }))
+    set(state => {
+      // 检查书籍是否已存在
+      const exists = state.books.some(b => b.id === book.id)
+      if (exists) return state
+
+      return {
+        books: [...state.books, book]
+      }
+    })
   },
 
   removeBookFromShelf: (bookId: string) => {

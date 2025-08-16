@@ -13,10 +13,10 @@ interface ReaderContentProps {
 
 function ReaderContent({ bookId, chapterId }: ReaderContentProps) {
   const contentRef = useRef<HTMLDivElement>(null)
-  const [showHighlightMenu, setShowHighlightMenu] = useState(false)
-  const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 })
-  const [selectedText, setSelectedText] = useState('')
-  const [selectionInfo, setSelectionInfo] = useState<any>(null)
+  const [showHighlightMenu, setShowHighlightMenu] = useState<boolean>(false)
+  const [menuPosition, setMenuPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 })
+  const [selectedText, setSelectedText] = useState<string>('')
+  const [selectionInfo, setSelectionInfo] = useState<{ startOffset: number; endOffset: number } | null>(null)
 
   const {
     currentBookId,
@@ -43,7 +43,7 @@ function ReaderContent({ bookId, chapterId }: ReaderContentProps) {
   }, [bookId, currentBookId, fetchBookContent])
 
   // 处理滚动事件，更新阅读进度
-  const handleScroll = (e) => {
+  const handleScroll = (e: any) => {
     if (!contentRef.current) return
 
     const { scrollTop } = e.detail

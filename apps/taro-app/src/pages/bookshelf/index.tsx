@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { View, Text, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
-import { useBookshelfStore } from '../../store/bookshelfStore'
+import { useBookshelfStore, Book } from '../../store/bookshelfStore'
 import BottomTabBar from '../../components/common/BottomTabBar'
 import './index.scss'
 
@@ -21,7 +21,7 @@ const BookshelfPage = () => {
   }
 
   // 渲染书籍项
-  function renderBookItem(book) {
+  function renderBookItem(book: Book) {
     return (
       <View
         key={book.id}

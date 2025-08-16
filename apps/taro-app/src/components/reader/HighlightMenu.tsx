@@ -8,13 +8,18 @@ interface HighlightMenuProps {
   onClose: () => void
 }
 
+interface ColorOption {
+  value: string
+  label: string
+}
+
 function HighlightMenu({
   position,
   onHighlight,
   onClose
 }: HighlightMenuProps) {
   // 高亮颜色选项
-  const colors = [
+  const colors: ColorOption[] = [
     { value: '#ffeb3b', label: '黄色' },
     { value: '#a5d6a7', label: '绿色' },
     { value: '#90caf9', label: '蓝色' },

@@ -1,13 +1,21 @@
 import Taro from '@tarojs/taro'
 import { Book } from '../store/bookshelfStore'
+import { Chapter } from '../store/readerStore'
 
 // API基础URL
 const BASE_URL = process.env.API_BASE || '/api'
 
+interface ApiResponse<T> {
+  data: T;
+  statusCode: number;
+  header: Record<string, string>;
+  errMsg: string;
+}
+
 // 通用请求方法
-async function request(url: string, options = {}) {
+async function request<T = any>(url: string, options: Taro.request.Option<any> = {}): Promise<T> {
   try {
-    const response = await Taro.request({
+    const response: ApiResponse<T> = await Taro.request({
       url: `${BASE_URL}${url}`,
       ...options
     })
@@ -24,59 +32,85 @@ async function request(url: string, options = {}) {
 }
 
 // 获取书架上的书籍
-export async function fetchBooks() {
-  return request('/books')
+export async function fetchBooks(): Promise<Book[]> {
+  // 在实际项目中，这里应该调用真实API
+  // return request<Book[]>('/books')
+
+  // 使用模拟数据
+  return Promise.resolve(mockBooks)
 }
 
 // 获取书籍详情
-export async function fetchBookDetail(bookId: string) {
-  return request(`/books/${bookId}`)
+export async function fetchBookDetail(bookId: string): Promise<Book> {
+  // 在实际项目中，这里应该调用真实API
+  // return request<Book>(`/books/${bookId}`)
+
+  // 使用模拟数据
+  const book = mockBooks.find(b => b.id === bookId)
+  if (!book) {
+    throw new Error('未找到书籍')
+  }
+  return Promise.resolve(book)
+}
+
+interface BookContent {
+  bookId: string;
+  chapters: Chapter[];
 }
 
 // 获取书籍内容
-export async function fetchBookContent(bookId: string) {
-  return request(`/books/${bookId}/content`)
+export async function fetchBookContent(bookId: string): Promise<BookContent> {
+  // 在实际项目中，这里应该调用真实API
+  // return request<BookContent>(`/books/${bookId}/content`)
+
+  // 使用模拟数据
+  return Promise.resolve(mockBookContent)
 }
 
 // 保存阅读进度
-export async function saveReadingProgress(bookId: string, progress: number) {
-  return request(`/books/${bookId}/progress`, {
+export async function saveReadingProgress(bookId: string, progress: number): Promise<void> {
+  return request<void>(`/books/${bookId}/progress`, {
     method: 'POST',
     data: { progress }
   })
 }
 
+interface HighlightsResponse {
+  highlights: any[];
+  comments: any[];
+}
+
 // 获取书籍的高亮和评论
-export async function fetchHighlightsAndComments(bookId: string) {
-  return request(`/books/${bookId}/highlights`)
+export async function fetchHighlightsAndComments(bookId: string): Promise<HighlightsResponse> {
+  return request<HighlightsResponse>(`/books/${bookId}/highlights`)
 }
 
 // 添加高亮
-export async function saveHighlight(highlight) {
-  return request('/highlights', {
+export async function saveHighlight(highlight: any): Promise<any> {
+  return request<any>('/highlights', {
     method: 'POST',
     data: highlight
   })
 }
 
 // 删除高亮
-export async function deleteHighlight(highlightId: string) {
-  return request(`/highlights/${highlightId}`, {
+export async function deleteHighlight(highlightId: string): Promise<void> {
+  return request<void>(`/highlights/${highlightId}`, {
     method: 'DELETE'
   })
 }
 
 // 添加评论
-export async function saveComment(comment) {
-  return request('/comments', {
+export async function saveComment(comment: any): Promise<any> {
+  return request<any>('/comments', {
     method: 'POST',
     data: comment
   })
 }
 
 // 删除评论
-export async function deleteComment(commentId: string) {
-  return request(`/comments/${commentId}`, {
+export async function deleteComment(commentId: string): Promise<void> {
+  return request<void>(`/comments/${commentId}`, {
     method: 'DELETE'
   })
 }
@@ -114,7 +148,7 @@ export const mockBooks: Book[] = [
 ]
 
 // 模拟书籍内容
-export const mockBookContent = {
+export const mockBookContent: BookContent = {
   bookId: '1',
   chapters: [
     {
