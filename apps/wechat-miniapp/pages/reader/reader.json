@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "阅读",
+  "usingComponents": {
+    "comment-panel": "../../components/comment-panel/comment-panel"
+  }
+}

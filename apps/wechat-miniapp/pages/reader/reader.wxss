@@ -1,0 +1,115 @@
+/* pages/reader/reader.wxss */
+.reader-page {
+  height: 100vh;
+  background-color: var(--reader-bg-color);
+  position: relative;
+}
+
+.dark-mode {
+  --reader-bg-color: #1a1a1a;
+  --reader-text-color: #e0e0e0;
+}
+
+.reader-content {
+  height: 100%;
+}
+
+.chapter-title {
+  padding: 20rpx 0;
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: var(--reader-text-color);
+}
+
+.chapter-content {
+  padding: 0 var(--reader-padding);
+  line-height: var(--reader-line-height);
+  color: var(--reader-text-color);
+}
+
+/* 高亮菜单 */
+.highlight-menu {
+  position: absolute;
+  z-index: 100;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 2rpx 8rpx rgba(0, 0, 0, 0.15));
+}
+
+.menu-content {
+  background-color: #fff;
+  border-radius: 8rpx;
+  padding: 10rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+  border-left: 8rpx solid transparent;
+  border-right: 8rpx solid transparent;
+  border-bottom: 8rpx solid #fff;
+  position: absolute;
+  top: -8rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.color-options {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+}
+
+.color-option {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  margin: 0 4rpx;
+  border: 1rpx solid #e0e0e0;
+}
+
+.menu-item {
+  padding: 8rpx 16rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border-radius: 4rpx;
+}
+
+.menu-item:active {
+  background-color: #f5f5f5;
+}
+
+/* 底部菜单 */
+.reader-bottom-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100rpx;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.1);
+  z-index: 50;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10rpx;
+}
+
+.menu-icon {
+  font-size: 32rpx;
+  margin-bottom: 4rpx;
+}
+
+.menu-text {
+  font-size: 24rpx;
+  color: #666;
+}

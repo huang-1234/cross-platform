@@ -1,0 +1,70 @@
+<!--pages/reader/reader.wxml-->
+<view class="reader-page {{isDarkMode ? 'dark-mode' : ''}}" bindtap="handleScreenTap">
+  <scroll-view
+    scroll-y
+    class="reader-content"
+    bindscroll="handleScroll"
+    scroll-with-animation
+    bindlongpress="handleLongPress"
+  >
+    <view class="chapter-title">
+      <text>{{currentChapter.title}}</text>
+    </view>
+
+    <rich-text class="chapter-content" style="font-size: {{fontSize}}px;" nodes="{{contentWithHighlights}}"></rich-text>
+
+    <!-- 底部空白，防止内容被底部菜单遮挡 -->
+    <view style="height: 100rpx;"></view>
+  </scroll-view>
+
+  <!-- 高亮菜单 -->
+  <view class="highlight-menu" wx:if="{{showHighlightMenu}}" style="left: {{highlightMenuPosition.x}}px; top: {{highlightMenuPosition.y}}px;">
+    <view class="menu-content">
+      <view class="color-options">
+        <view class="color-option" style="background-color: #ffeb3b;" bindtap="handleCreateHighlight" data-color="#ffeb3b"></view>
+        <view class="color-option" style="background-color: #a5d6a7;" bindtap="handleCreateHighlight" data-color="#a5d6a7"></view>
+        <view class="color-option" style="background-color: #90caf9;" bindtap="handleCreateHighlight" data-color="#90caf9"></view>
+        <view class="color-option" style="background-color: #ef9a9a;" bindtap="handleCreateHighlight" data-color="#ef9a9a"></view>
+      </view>
+
+      <view class="menu-item" bindtap="handleCreateHighlight">高亮</view>
+      <view class="menu-item" bindtap="closeHighlightMenu">取消</view>
+    </view>
+    <view class="arrow"></view>
+  </view>
+
+  <!-- 底部菜单 -->
+  <view class="reader-bottom-menu" wx:if="{{showMenu}}">
+    <view class="menu-item" bindtap="handleBackToBookshelf">
+      <text class="menu-icon">📚</text>
+      <text class="menu-text">书架</text>
+    </view>
+
+    <view class="menu-item" bindtap="handleShowChapters">
+      <text class="menu-icon">📑</text>
+      <text class="menu-text">目录</text>
+    </view>
+
+    <view class="menu-item" bindtap="handleFontSizeChange" data-type="decrease">
+      <text class="menu-icon">A-</text>
+      <text class="menu-text">缩小</text>
+    </view>
+
+    <view class="menu-item" bindtap="handleFontSizeChange" data-type="increase">
+      <text class="menu-icon">A+</text>
+      <text class="menu-text">放大</text>
+    </view>
+
+    <view class="menu-item" bindtap="handleThemeChange">
+      <text class="menu-icon">🌓</text>
+      <text class="menu-text">主题</text>
+    </view>
+  </view>
+
+  <!-- 评论面板 -->
+  <comment-panel
+    wx:if="{{activeHighlightId}}"
+    highlight-id="{{activeHighlightId}}"
+    bind:close="closeCommentPanel"
+  ></comment-panel>
+</view>

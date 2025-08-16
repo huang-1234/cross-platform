@@ -1,0 +1,131 @@
+/* components/comment-panel/comment-panel.wxss */
+.comment-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border-radius: 32rpx 32rpx 0 0;
+  padding: 20rpx;
+  z-index: 100;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.title {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.close-btn {
+  font-size: 40rpx;
+  color: #999;
+  padding: 0 8rpx;
+}
+
+.highlight-content {
+  background-color: #f9f9f9;
+  border-radius: 8rpx;
+  padding: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.highlight-text {
+  display: inline;
+  padding: 2rpx 0;
+  line-height: 1.6;
+  border-radius: 2rpx;
+}
+
+.highlight-time {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+.delete-highlight {
+  font-size: 24rpx;
+  color: #ff4d4f;
+  margin-top: 8rpx;
+  text-align: right;
+}
+
+.comment-list {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 16rpx;
+  max-height: 40vh;
+}
+
+.comment-item {
+  padding: 12rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.comment-content {
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+
+.comment-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8rpx;
+}
+
+.comment-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.delete-comment {
+  font-size: 24rpx;
+  color: #ff4d4f;
+}
+
+.empty-comment {
+  text-align: center;
+  color: #999;
+  padding: 20rpx 0;
+}
+
+.comment-input {
+  display: flex;
+  align-items: flex-end;
+}
+
+.textarea {
+  flex: 1;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 4rpx;
+  padding: 8rpx;
+  font-size: 28rpx;
+  min-height: 72rpx;
+  max-height: 240rpx;
+}
+
+.submit-btn {
+  margin-left: 12rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 28rpx;
+  padding: 0 16rpx;
+  background-color: #1890ff;
+  color: #fff;
+  border-radius: 4rpx;
+}
+
+.submit-btn[disabled] {
+  background-color: #d9d9d9;
+  color: rgba(0, 0, 0, 0.25);
+}

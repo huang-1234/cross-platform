@@ -1,0 +1,34 @@
+<!--pages/mine/mine.wxml-->
+<view class="mine-page">
+  <!-- 用户信息 -->
+  <view class="user-card">
+    <image class="avatar" src="{{user.avatar}}"></image>
+    <view class="user-info">
+      <text class="nickname">{{user.nickname}}</text>
+      <view class="stats">
+        <view class="stat-item">
+          <text class="stat-value">{{user.readingDays}}</text>
+          <text class="stat-label">阅读天数</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{user.booksCount}}</text>
+          <text class="stat-label">藏书</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="feature-list">
+    <view class="feature-item" wx:for="{{features}}" wx:key="id" bindtap="handleFeatureClick" data-id="{{item.id}}">
+      <text class="feature-icon">{{item.icon}}</text>
+      <text class="feature-title">{{item.title}}</text>
+      <text class="feature-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 版本信息 -->
+  <view class="footer">
+    <text class="version">微阅读 v1.0.0</text>
+  </view>
+</view>

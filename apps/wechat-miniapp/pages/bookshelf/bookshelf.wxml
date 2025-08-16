@@ -1,0 +1,35 @@
+<!--pages/bookshelf/bookshelf.wxml-->
+<view class="bookshelf-page">
+  <view class="header">
+    <text class="title">我的书架</text>
+  </view>
+
+  <view class="book-list">
+    <block wx:if="{{loading}}">
+      <view class="loading">加载中...</view>
+    </block>
+    <block wx:elif="{{error}}">
+      <view class="error">
+        <text>{{error}}</text>
+        <text class="retry" bindtap="fetchBooks">重试</text>
+      </view>
+    </block>
+    <block wx:elif="{{books.length > 0}}">
+      <view class="book-item" wx:for="{{books}}" wx:key="id" bindtap="handleOpenBook" data-id="{{item.id}}">
+        <image class="book-cover" src="{{item.cover}}" mode="aspectFill"></image>
+        <view class="book-info">
+          <text class="book-title">{{item.title}}</text>
+          <text class="book-author">{{item.author}}</text>
+          <view class="progress-bar" wx:if="{{item.progress > 0}}">
+            <view class="progress-inner" style="width: {{item.progress * 100}}%"></view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="empty">
+        <text>书架空空如也，快去添加图书吧</text>
+      </view>
+    </block>
+  </view>
+</view>

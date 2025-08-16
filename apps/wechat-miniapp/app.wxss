@@ -1,0 +1,86 @@
+/**app.wxss**/
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f8f8f8;
+  box-sizing: border-box;
+}
+
+view, text, navigator, button, input, image {
+  box-sizing: border-box;
+}
+
+/* 阅读器样式变量 */
+page {
+  --reader-bg-color: #f8f8f8;
+  --reader-text-color: #333;
+  --reader-font-size: 16px;
+  --reader-line-height: 1.8;
+  --reader-padding: 32rpx;
+  --highlight-color: #ffeb3b;
+  --highlight-active-color: #ffc107;
+  --comment-bg-color: #f1f1f1;
+  --comment-text-color: #666;
+  --bottom-bar-height: 100rpx;
+  --primary-color: #1890ff;
+}
+
+/* 适配底部安全区域 */
+.page-with-tabbar {
+  padding-bottom: var(--bottom-bar-height);
+  min-height: 100vh;
+}
+
+/* 通用样式 */
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-error {
+  color: #ff4d4f;
+}

@@ -1,0 +1,88 @@
+/* pages/bookshelf/bookshelf.wxss */
+.bookshelf-page {
+  padding: 20rpx;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  padding-bottom: calc(var(--bottom-bar-height) + 20rpx);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.book-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.book-item {
+  display: flex;
+  background-color: #fff;
+  border-radius: 8rpx;
+  padding: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.book-cover {
+  width: 120rpx;
+  height: 160rpx;
+  border-radius: 4rpx;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+.book-info {
+  flex: 1;
+  margin-left: 16rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+  color: #333;
+}
+
+.book-author {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 16rpx;
+}
+
+.progress-bar {
+  height: 4rpx;
+  background-color: #e0e0e0;
+  border-radius: 2rpx;
+  overflow: hidden;
+  margin-top: auto;
+}
+
+.progress-inner {
+  height: 100%;
+  background-color: var(--primary-color);
+}
+
+.loading, .error, .empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40rpx 0;
+  color: #999;
+  text-align: center;
+}
+
+.retry {
+  color: var(--primary-color);
+  margin-top: 8rpx;
+}

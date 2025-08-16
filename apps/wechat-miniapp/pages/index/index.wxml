@@ -1,0 +1,47 @@
+<!--pages/index/index.wxml-->
+<view class="index-page">
+  <view class="header">
+    <text class="title">发现好书</text>
+  </view>
+
+  <scroll-view scroll-y class="content">
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">推荐阅读</text>
+      </view>
+
+      <view class="book-list">
+        <block wx:if="{{loading}}">
+          <view class="loading">加载中...</view>
+        </block>
+        <block wx:else>
+          <view class="book-card" wx:for="{{recommendBooks}}" wx:key="id" bindtap="handleOpenBook" data-id="{{item.id}}">
+            <image class="book-cover" src="{{item.cover}}" mode="aspectFill"></image>
+            <view class="book-info">
+              <text class="book-title">{{item.title}}</text>
+              <text class="book-author">{{item.author}}</text>
+              <view class="add-button" catchtap="handleAddToShelf" data-id="{{item.id}}">
+                加入书架
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">热门分类</text>
+      </view>
+
+      <view class="category-list">
+        <view class="category-item" wx:for="{{categories}}" wx:key="*this" bindtap="handleCategoryTap" data-category="{{item}}">
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部空白，防止内容被底部标签栏遮挡 -->
+    <view style="height: 120rpx;"></view>
+  </scroll-view>
+</view>
