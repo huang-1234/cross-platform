@@ -12,7 +12,7 @@ echo "当前分支名: $branch"
 # git ci
 ciAction="feat: "
 
-ciMessage="ac taro app"
+ciMessage="feat: add flutter app and miniapp"
 git add .
 
 git ci -m "$ciAction $ciMessage"
